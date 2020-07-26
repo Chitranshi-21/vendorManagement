@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import data from '../data.js';
 import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,9 +7,6 @@ import { detailsProduct } from '../actions/productActions.js';
 function ProductScreen(props) {
 
   const [qty, setQty] = useState(1);
-  //console.log(props.match.params.id);
- // const product = data.products.find(x=> x._id === props.match.params.id);
-   const [rating, setRating] = useState(0);
  const productDetails = useSelector(state => state.productDetails);
  const {product, loading, error} = productDetails;
  const dispatch = useDispatch();

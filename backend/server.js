@@ -4,11 +4,10 @@ import user from './routes/userRoute';
 import bodyParser from 'body-parser';
 import path from 'path';
 import productRoute from './routes/productRoute';
-
+import uploadRoute from './routes/uploadRoute';
 const app = express();
 
 app.use(bodyParser.json());
-
 
 app.get("/api/products/:id", async(req, res) => {
   const productId = req.params.id;
@@ -21,9 +20,10 @@ app.get("/api/products/:id", async(req, res) => {
 app.get("/api/products", (req, res) => {
   res.send(data.products);
 });
-
+app.use('/api/uploads', uploadRoute);
 app.use('/api/users', user);
 app.use('/api/product', productRoute);
+app.use('/uploads',express.static(path.join(__dirname, '/../uploads')));
 app.use(express.static(path.join(__dirname, '/../frontend/build')));
 
 app.get('*', (req, res) => {
